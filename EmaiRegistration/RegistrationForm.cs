@@ -1,4 +1,4 @@
-using System.Net.Mail;
+п»їusing System.Net.Mail;
 using System.Net;
 using EmaiRegistration.Service;
 
@@ -6,35 +6,35 @@ namespace EmaiRegistration
 {
     public partial class RegistrationForm : Form
     {
-        //Создаём объект отправки сообщений в почтовый сервис
+        //РЎРѕР·РґР°С‘Рј РѕР±СЉРµРєС‚ РѕС‚РїСЂР°РІРєРё СЃРѕРѕР±С‰РµРЅРёР№ РІ РїРѕС‡С‚РѕРІС‹Р№ СЃРµСЂРІРёСЃ
         Email_Service ES = new Email_Service();
-        //Хранения сгенерированного кода подтверждения
+        //РҐСЂР°РЅРµРЅРёСЏ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅРѕРіРѕ РєРѕРґР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
         string confirmation_code = string.Empty;
         public RegistrationForm()
         {
             InitializeComponent();
         }
 
-        //Событие отправки кода сообщения на указанную почту
+        //РЎРѕР±С‹С‚РёРµ РѕС‚РїСЂР°РІРєРё РєРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° СѓРєР°Р·Р°РЅРЅСѓСЋ РїРѕС‡С‚Сѓ
         private void Send_Code_Click(object sender, EventArgs e)
         {
-            //Генерируем код подтверждения
+            //Р“РµРЅРµСЂРёСЂСѓРµРј РєРѕРґ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
             confirmation_code = new Random().Next(100000, 999999).ToString();
-            //Проверяем корректность почты
+            //РџСЂРѕРІРµСЂСЏРµРј РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РїРѕС‡С‚С‹
             if (tb_Email.Text != "" && (tb_Email.Text.Contains('@') || tb_Email.Text.Contains("ru") || tb_Email.Text.Contains("com")))
             {
-                //Отправляем сообщение
-                ES.SendEmai(l_Status, "Сonfirmation code sent", tb_Email.Text, "Mail Confirmation", $"**{confirmation_code}**");
+                //РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ
+                ES.SendEmai(l_Status, "РЎonfirmation code sent", tb_Email.Text, "Mail Confirmation", $"**{confirmation_code}**");
             }
             else
             {
-                //Выводим сообщение, если почта не корректна
+                //Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ, РµСЃР»Рё РїРѕС‡С‚Р° РЅРµ РєРѕСЂСЂРµРєС‚РЅР°
                 l_Status.Text = "Incorrect Email";
             }
-            //Отображаем TextBox для ввода кода
+            //РћС‚РѕР±СЂР°Р¶Р°РµРј TextBox РґР»СЏ РІРІРѕРґР° РєРѕРґР°
             tb_Confirmed_Code.Visible = true;
         }
-        //Событие отображения элементов регистрации
+        //РЎРѕР±С‹С‚РёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ СЂРµРіРёСЃС‚СЂР°С†РёРё
         private void b_New_Registration_Click(object sender, EventArgs e)
         {
             l_User_Name.Visible = true;
@@ -52,7 +52,7 @@ namespace EmaiRegistration
             b_Cancel.Visible = true;
             b_Get_Code.Visible = true;
         }
-        //Событие очистки и скрытия элементов регистрации
+        //РЎРѕР±С‹С‚РёРµ РѕС‡РёСЃС‚РєРё Рё СЃРєСЂС‹С‚РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СЂРµРіРёСЃС‚СЂР°С†РёРё
         private void b_Cancel_Click(object sender, EventArgs e)
         {
             l_User_Name.Visible = false;
@@ -78,7 +78,7 @@ namespace EmaiRegistration
             confirmation_code = "";
             tm_Get_Code.Stop();
         }
-        //События проверки заполнения соотвествующих TextBox, путём вызова метода
+        //РЎРѕР±С‹С‚РёСЏ РїСЂРѕРІРµСЂРєРё Р·Р°РїРѕР»РЅРµРЅРёСЏ СЃРѕРѕС‚РІРµСЃС‚РІСѓСЋС‰РёС… TextBox, РїСѓС‚С‘Рј РІС‹Р·РѕРІР° РјРµС‚РѕРґР°
         private void tb_User_Name_TextChanged(object sender, EventArgs e)
         {
             CheckingFilling();
@@ -97,38 +97,38 @@ namespace EmaiRegistration
         {
             CheckingFilling();
         }
-        //Событие проверки кода подтверждения и регистрации
+        //РЎРѕР±С‹С‚РёРµ РїСЂРѕРІРµСЂРєРё РєРѕРґР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Рё СЂРµРіРёСЃС‚СЂР°С†РёРё
         private void b_Register_Click(object sender, EventArgs e)
         {
-            //Проверяем код подтверждения
+            //РџСЂРѕРІРµСЂСЏРµРј РєРѕРґ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
             if (confirmation_code == tb_Confirmed_Code.Text)
             {
-                //Выводим сообщени рь удачной регистрации
+                //Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРё СЂСЊ СѓРґР°С‡РЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРё
                 l_Success.Text = $"User \"{tb_User_Name.Text}\" successful registration!";
             }
             else
             {
-                //Выводим сообщения об неудачной регистрации
+                //Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РЅРµСѓРґР°С‡РЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРё
                 l_Success.Text = $"Verification code is incorrect!";
             }
             tm_Get_Code.Stop();
         }        
-        //Событие запуска таймера для периодической проверки почты на получение письма с кодом подтверждения
+        //РЎРѕР±С‹С‚РёРµ Р·Р°РїСѓСЃРєР° С‚Р°Р№РјРµСЂР° РґР»СЏ РїРµСЂРёРѕРґРёС‡РµСЃРєРѕР№ РїСЂРѕРІРµСЂРєРё РїРѕС‡С‚С‹ РЅР° РїРѕР»СѓС‡РµРЅРёРµ РїРёСЃСЊРјР° СЃ РєРѕРґРѕРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
         private void b_Start_Get_Code_Click(object sender, EventArgs e)
         {
             tm_Get_Code.Start();            
         }
-        //Событие вызова метода получения кода подтверждения с сервесной почты и остановки таймера
+        //РЎРѕР±С‹С‚РёРµ РІС‹Р·РѕРІР° РјРµС‚РѕРґР° РїРѕР»СѓС‡РµРЅРёСЏ РєРѕРґР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СЃ СЃРµСЂРІРµСЃРЅРѕР№ РїРѕС‡С‚С‹ Рё РѕСЃС‚Р°РЅРѕРІРєРё С‚Р°Р№РјРµСЂР°
         private void tm_Get_Code_Tick(object sender, EventArgs e)
         {
             tb_Confirmed_Code.Text = ES.GetEmai(tb_Email.Text);
             tm_Get_Code.Stop();
         }
-        //Метод проверки заполнения соответствующих TextBox
+        //РњРµС‚РѕРґ РїСЂРѕРІРµСЂРєРё Р·Р°РїРѕР»РЅРµРЅРёСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… TextBox
         private void CheckingFilling()
         {
             if (tb_Confirmed_Code.Text != "" && tb_User_Name.Text != "" && tb_Password.Text != "" && tb_Email.Text != "")
-                //Активируем соответствующую кнопку
+                //РђРєС‚РёРІРёСЂСѓРµРј СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ РєРЅРѕРїРєСѓ
                 b_Register.Enabled = true;
         }
     }
