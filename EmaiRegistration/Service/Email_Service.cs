@@ -47,14 +47,22 @@ namespace EmaiRegistration.Service
         {
             try
             {
-                SmtpClient client = new SmtpClient("smpt.mail.ru", 587);
-                client.EnableSsl = true;
-                client.Credentials = new NetworkCredential(ServiceMail, Password);
-                await client.SendMailAsync(ServiceMail, to_email, topic, message);
-                label.Text = label_message;
+                //Создаём подключене к почтовому сервису и настраиваем его
+                using (SmtpClient client = new SmtpClient("smpt.mail.ru", 587)
+                { 
+                    EnableSsl = true,
+                    Credentials = new NetworkCredential(ServiceMail, Password)
+                })
+                {     
+                    //Отправляем письмо согласно указанных параметров
+                    await client.SendMailAsync(ServiceMail, to_email, topic, message);
+                    //Выводим результат отправки
+                    label.Text = label_message;
+                }
             }
             catch(Exception ex)
             {
+                //Выводим ошибку если письмо не отправилось
                 label.Text = $"Something wrong: {ex.Message}";
             }
         }
