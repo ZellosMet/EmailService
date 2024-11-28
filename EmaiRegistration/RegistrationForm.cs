@@ -7,7 +7,7 @@ namespace EmaiRegistration
     public partial class RegistrationForm : Form
     {
         //Создаём объект отправки сообщений в почтовый сервис
-        Email_Service ES = new Email_Service();
+        EmailService ES = new EmailService();
         //Хранения сгенерированного кода подтверждения
         string confirmation_code = string.Empty;
         public RegistrationForm()

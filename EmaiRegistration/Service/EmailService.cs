@@ -13,7 +13,7 @@ using MailKit;
 namespace EmaiRegistration.Service
 {
     //Класс отправки сообщений в почтовый сервис
-    internal class Email_Service
+    internal class EmailService
     {
         //Пароль почтового сервиса
         string Password { get; set; }
@@ -22,7 +22,7 @@ namespace EmaiRegistration.Service
         //Путь к файлу к данным почтового сервиса
         string path = Environment.CurrentDirectory + "\\service-mail";
 
-        public Email_Service() 
+        public EmailService() 
         {
             //Получаем данный почтового сервиса(адрес и пароль)
             using (StreamReader reader = new StreamReader(path))
