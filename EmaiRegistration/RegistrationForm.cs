@@ -5,13 +5,17 @@ using EmaiRegistration.Service;
 namespace EmaiRegistration
 {
     public partial class RegistrationForm : Form
-    {
+    {    
         //Создаём объект отправки сообщений в почтовый сервис
-        EmailService ES = new EmailService();
+        EmailService ES;
         //Хранения сгенерированного кода подтверждения
         string confirmation_code = string.Empty;
         public RegistrationForm()
         {
+            //Путь к файлу к данным почтового сервиса
+            string path = Environment.CurrentDirectory + "\\service-mail";
+            //Иницализируем объект
+            ES = new EmailService(path);
             InitializeComponent();
         }
 

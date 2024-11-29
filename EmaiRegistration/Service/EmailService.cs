@@ -18,13 +18,11 @@ namespace EmaiRegistration.Service
         //Пароль почтового сервиса
         string Password { get; set; }
         //Адрес почтового сервиса
-        string ServiceMail { get; set; }
-        //Путь к файлу к данным почтового сервиса
-        string path = Environment.CurrentDirectory + "\\service-mail";
+        string ServiceMail { get; set; }        
 
-        public EmailService() 
+        public EmailService(string path) 
         {
-            //Получаем данный почтового сервиса(адрес и пароль)
+            //Получаем данный почтового сервиса(адрес и пароль) из файла
             using (StreamReader reader = new StreamReader(path))
             {
                 string line;
