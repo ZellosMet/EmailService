@@ -28,7 +28,7 @@ namespace EmaiRegistration
             if (tb_Email.Text != "" && (tb_Email.Text.Contains('@') || tb_Email.Text.Contains("ru") || tb_Email.Text.Contains("com")))
             {
                 //Отправляем сообщение
-                ES.SendEmai(l_Status, "Сonfirmation code sent", tb_Email.Text, "Mail Confirmation", $"**{confirmation_code}**");
+                ES.SendEmai(l_Status, "Сonfirmation code sent", tb_Email.Text, "Mail Confirmation Code", $"**{confirmation_code}**");
             }
             else
             {
